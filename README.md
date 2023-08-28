@@ -5,3 +5,5 @@ to apply various filters to a set of flights and obtain a refined list of flight
 The module supports dynamic selection and application of filtering rules, making it versatile for handling diverse
 filtering requirements. The filtered flights can be used for further analysis or presentation in accordance with
 specific criteria.
+
+git clone https://github.com/DrinkinsJ/test.gridnine.git
