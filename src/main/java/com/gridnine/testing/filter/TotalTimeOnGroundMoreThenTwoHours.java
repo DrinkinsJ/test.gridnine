@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * A flight filter implementation that checks if the total time on the ground (the interval between the arrival of one segment and the departure of the next) exceeds two hours.
  */
-public class TotalTimeOnGroundMoreThenTwoHoursFilter extends AbstractFlightFilter {
+public class TotalTimeOnGroundMoreThenTwoHours extends AbstractFlightFilter {
 
     private static final Duration MIN_TOTAL_GROUND_TIME = Duration.ofHours(2);
 

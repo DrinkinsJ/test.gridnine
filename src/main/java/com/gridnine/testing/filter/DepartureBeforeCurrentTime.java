@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * A flight filter implementation that checks if all segments' departure dates are before the current time.
  */
-public class DepartureBeforeCurrentTimeFilter extends AbstractFlightFilter {
+public class DepartureBeforeCurrentTime extends AbstractFlightFilter {
 
     /**
      * Checks whether all departure dates of a flight's segments are before the current time.

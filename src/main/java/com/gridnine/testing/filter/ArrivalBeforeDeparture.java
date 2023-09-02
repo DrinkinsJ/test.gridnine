@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * A flight filter implementation that checks if any segment's departure date is before the arrival date of the previous segment.
  */
-public class ArrivalBeforeDepartureFilter extends AbstractFlightFilter {
+public class ArrivalBeforeDeparture extends AbstractFlightFilter {
     /**
      * Checks whether a flight's segments satisfy the condition that each segment's departure date is after or equal to the previous segment's arrival date.
      * @param segments List of segments associated with a flight

@@ -18,7 +18,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.minusHours(1), currentTime.plusHours(4))
         ));
         List<Flight> flights = List.of(departureBeforeCurrentTimeOneSegment);
-        List<Flight> actualFlights = new DepartureBeforeCurrentTimeFilter().filter(flights);
+        List<Flight> actualFlights = new DepartureBeforeCurrentTime().filter(flights);
         Assertions.assertEquals(0, actualFlights.size());
     }
 
@@ -29,7 +29,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(1), currentTime.plusHours(4))
         ));
         List<Flight> flights = List.of(departureBeforeSecondSegmentArrival);
-        List<Flight> actualFlights = new DepartureBeforeCurrentTimeFilter().filter(flights);
+        List<Flight> actualFlights = new DepartureBeforeCurrentTime().filter(flights);
         Assertions.assertEquals(0, actualFlights.size());
     }
 
@@ -44,35 +44,35 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(1), currentTime.plusHours(4))
         ));
         List<Flight> flights = List.of(departureBeforeSecondSegmentArrival, validFlight);
-        List<Flight> actualFlights = new DepartureBeforeCurrentTimeFilter().filter(flights);
+        List<Flight> actualFlights = new DepartureBeforeCurrentTime().filter(flights);
         Assertions.assertEquals(1, actualFlights.size());
         Assertions.assertEquals(List.of(validFlight), actualFlights);
     }
 
     @Test
-    public void WhenArrivalBeforeDepartureOneFlightFailTest() {
+    public void whenArrivalBeforeDepartureOneFlightFailTest() {
         Flight arrivalBeforeDeparture = new Flight(List.of(
                 new Segment(currentTime.plusHours(1), currentTime.plusHours(4)),
                 new Segment(currentTime.plusHours(3), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(arrivalBeforeDeparture);
-        List<Flight> actualFlights = new ArrivalBeforeDepartureFilter().filter(flights);
+        List<Flight> actualFlights = new ArrivalBeforeDeparture().filter(flights);
         Assertions.assertEquals(0, actualFlights.size());
     }
 
     @Test
-    public void WhenArrivalBeforeDepartureOneFlightOkTest() {
+    public void whenArrivalBeforeDepartureOneFlightOkTest() {
         Flight arrivalAfterDeparture = new Flight(List.of(
                 new Segment(currentTime.plusHours(1), currentTime.plusHours(4)),
                 new Segment(currentTime.plusHours(5), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(arrivalAfterDeparture);
-        List<Flight> actualFlights = new ArrivalBeforeDepartureFilter().filter(flights);
+        List<Flight> actualFlights = new ArrivalBeforeDeparture().filter(flights);
         Assertions.assertEquals(1, actualFlights.size());
     }
 
     @Test
-    public void WhenArrivalBeforeDepartureTwoFlightOnlyOneOkTest() {
+    public void whenArrivalBeforeDepartureTwoFlightOnlyOneOkTest() {
         Flight arrivalBeforeDeparture = new Flight(List.of(
                 new Segment(currentTime.plusHours(1), currentTime.plusHours(4)),
                 new Segment(currentTime.plusHours(5), currentTime.plusHours(8))
@@ -82,7 +82,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(3), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(arrivalBeforeDeparture, arrivalAfterDeparture);
-        List<Flight> actualFlights = new ArrivalBeforeDepartureFilter().filter(flights);
+        List<Flight> actualFlights = new ArrivalBeforeDeparture().filter(flights);
         Assertions.assertEquals(1, actualFlights.size());
         Assertions.assertEquals(List.of(arrivalBeforeDeparture), actualFlights);
     }
@@ -94,7 +94,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(7), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(timeOnGroundMore2Hours);
-        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHoursFilter().filter(flights);
+        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHours().filter(flights);
         Assertions.assertEquals(1, actualFlights.size());
     }
 
@@ -105,7 +105,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(5), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(timeOnGroundLess2Hours);
-        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHoursFilter().filter(flights);
+        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHours().filter(flights);
         Assertions.assertEquals(0, actualFlights.size());
     }
 
@@ -120,7 +120,7 @@ public class FlightFilterTest {
                 new Segment(currentTime.plusHours(7), currentTime.plusHours(8))
         ));
         List<Flight> flights = List.of(timeOnGroundLess2Hours, timeOnGroundMore2Hours);
-        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHoursFilter().filter(flights);
+        List<Flight> actualFlights = new TotalTimeOnGroundMoreThenTwoHours().filter(flights);
         Assertions.assertEquals(1, actualFlights.size());
         Assertions.assertEquals(actualFlights, List.of(timeOnGroundMore2Hours));
     }
